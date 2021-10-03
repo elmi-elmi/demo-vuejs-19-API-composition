@@ -1,29 +1,40 @@
 <template>
   <section class="container">
-    <h2>{{ user.name }}</h2>
-    <h3>{{ user.age }}</h3>
+    <h2>{{ userName }}</h2>
+    <h3>{{ userAge }}</h3>
     <button @click="setAge">Set Age</button>
+    <div>
+      <input type="text" @input="setFirstName" />
+      <input type="text" @input="setLastName" />
+    </div>
     <!-- <h2>{{ name }}</h2>
     <h3>{{ age }}</h3> -->
   </section>
 </template>
 
 <script>
-// import { ref } from 'vue';
-import { reactive, ref } from 'vue';
+import { ref, computed } from 'vue';
+// import { reactive, ref } from 'vue';
 // import { reactive, ref, toRefs } from 'vue';
 export default {
   setup() {
-    const uName = ref('Shahrokh');
+    // const uName = ref('Shahrokh');
+    const uAge = ref('28');
+    const firstName = ref('');
+    const lastName = ref('');
+
+    const uName = computed(function() {
+      return firstName.value + ' ' + lastName.value;
+    });
     // const user = ref({
     //   name: 'Shahrokh',
     //   age: '28'
     // });
-    console.log(uName);
-    const user = reactive({
-      name: 'Shahrokh',
-      age: '28'
-    });
+    // console.log(uName);
+    // const user = reactive({
+    //   name: 'Shahrokh',
+    //   age: '28'
+    // });
 
     // setTimeout(function() {
     //   // uName.value = 'Elmi';
@@ -34,12 +45,26 @@ export default {
     //   (user.name = 'elmi'), (user.age = '29');
     // }, 2000);
     const setNewAge = function() {
-      user.age = 30;
+      // uName.value = 'elmi';
+      uAge.value = '30';
+    };
+    const setFirstName = function(event) {
+      firstName.value = event.target.value;
+    };
+    const setLastName = function(event) {
+      lastName.value = event.target.value;
     };
 
     // const userRefs = toRefs(user);
 
-    return { user: user, setAge: setNewAge };
+    return {
+      userName: uName,
+      userAge: uAge,
+      setAge: setNewAge,
+      setFirstName,
+      setLastName
+    };
+    // return { user: user, setAge: setNewAge };
     // return { user: user, name: userRefs.name, age: userRefs.age };
     // return { userName: uName };
   }
