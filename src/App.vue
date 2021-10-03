@@ -2,6 +2,7 @@
   <section class="container">
     <h2>{{ user.name }}</h2>
     <h3>{{ user.age }}</h3>
+    <button @click="setAge">Set Age</button>
     <!-- <h2>{{ name }}</h2>
     <h3>{{ age }}</h3> -->
   </section>
@@ -28,14 +29,17 @@ export default {
     //   // uName.value = 'Elmi';
     //   (user.value.name = 'elmi'), (user.value.age = '29');
     // }, 2000);
-    setTimeout(function() {
-      // uName.value = 'Elmi';
-      (user.name = 'elmi'), (user.age = '29');
-    }, 2000);
+    // setTimeout(function() {
+    //   // uName.value = 'Elmi';
+    //   (user.name = 'elmi'), (user.age = '29');
+    // }, 2000);
+    const setNewAge = function() {
+      user.age = 30;
+    };
 
     // const userRefs = toRefs(user);
 
-    return { user: user };
+    return { user: user, setAge: setNewAge };
     // return { user: user, name: userRefs.name, age: userRefs.age };
     // return { userName: uName };
   }
