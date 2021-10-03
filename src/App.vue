@@ -5,7 +5,8 @@
     <button @click="setAge">Set Age</button>
     <div>
       <input type="text" placeholder="first name" v-model="firstName" />
-      <input type="text" placeholder="last name" v-model="lastName" />
+      <input type="text" placeholder="last name" ref="lastNameInput" />
+      <button @click="setLastName">set lastName</button>
     </div>
     <!-- <h2>{{ name }}</h2>
     <h3>{{ age }}</h3> -->
@@ -22,7 +23,7 @@ export default {
     const uAge = ref('28');
     const firstName = ref('');
     const lastName = ref('');
-
+    const lastNameInput = ref('');
     const uName = computed(function() {
       return firstName.value + ' ' + lastName.value;
     });
@@ -33,6 +34,9 @@ export default {
       console.log('old name: ', oldValues[1]);
       console.log('new name: ', newValues[1]);
     });
+    function setLastName() {
+      lastName.value = lastNameInput.value.value;
+    }
     // const user = ref({
     //   name: 'Shahrokh',
     //   age: '28'
@@ -69,7 +73,9 @@ export default {
       userAge: uAge,
       setAge: setNewAge,
       firstName,
-      lastName
+      lastName,
+      setLastName,
+      lastNameInput
     };
     // return { user: user, setAge: setNewAge };
     // return { user: user, name: userRefs.name, age: userRefs.age };
