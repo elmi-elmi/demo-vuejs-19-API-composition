@@ -4,8 +4,8 @@
     <h3>{{ userAge }}</h3>
     <button @click="setAge">Set Age</button>
     <div>
-      <input type="text" @input="setFirstName" />
-      <input type="text" @input="setLastName" />
+      <input type="text" v-model="firstName" />
+      <input type="text" v-model="lastName" />
     </div>
     <!-- <h2>{{ name }}</h2>
     <h3>{{ age }}</h3> -->
@@ -48,12 +48,12 @@ export default {
       // uName.value = 'elmi';
       uAge.value = '30';
     };
-    const setFirstName = function(event) {
-      firstName.value = event.target.value;
-    };
-    const setLastName = function(event) {
-      lastName.value = event.target.value;
-    };
+    // const setFirstName = function(event) {
+    //   firstName.value = event.target.value;
+    // };
+    // const setLastName = function(event) {
+    //   lastName.value = event.target.value;
+    // };
 
     // const userRefs = toRefs(user);
 
@@ -61,8 +61,8 @@ export default {
       userName: uName,
       userAge: uAge,
       setAge: setNewAge,
-      setFirstName,
-      setLastName
+      firstName,
+      lastName
     };
     // return { user: user, setAge: setNewAge };
     // return { user: user, name: userRefs.name, age: userRefs.age };
