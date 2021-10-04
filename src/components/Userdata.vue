@@ -4,15 +4,46 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import {
+  computed,
+  inject,
+  onBeforeMount,
+  onMounted,
+  onBeforeUpdate,
+  onUpdated,
+  onBeforeUnmount,
+  onUnmounted
+} from 'vue';
 export default {
-  props: ['lastName', 'firstName', 'age'],
+  props: ['lastName', 'firstName'],
   setup(props) {
     const userName = computed(function() {
       return props.firstName + ' ' + props.lastName;
     });
 
-    return { userName };
+    const age = inject('userAge');
+
+    onBeforeMount(function() {
+      console.log('onBeforeMount');
+    });
+
+    onMounted(function() {
+      console.log('onMounted');
+    });
+    onBeforeUpdate(function() {
+      console.log('onBeforeUpdate');
+    });
+    onUpdated(function() {
+      console.log('onUpdated');
+    });
+    onBeforeUnmount(function() {
+      console.log('onBeforeUmnout');
+    });
+    onUnmounted(function() {
+      console.log('onUnmounted');
+    });
+
+    return { userName, age };
   }
   //   computed: {
   //     userName() {
